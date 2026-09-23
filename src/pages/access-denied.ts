@@ -1,0 +1,5 @@
+import{navigate}from"../router";
+import{t}from"../i18n";
+import{currentRole,landingRoute,moduleForRoute,moduleLabelKey,roleLabelKey}from"../services/permissions";
+export function accessDeniedPage(route:string){const role=currentRole(),module=moduleForRoute(route);return`<section class="page access-denied-page"><div class="card access-denied-card"><div class="access-denied-lock">🔒</div><div class="eyebrow">${t("v54.denied.eyebrow")}</div><h1>${t("v54.denied.title")}</h1><p>${t("v54.denied.text",{role:t(roleLabelKey(role)),module:t(moduleLabelKey(module))})}</p><div class="access-denied-meta"><div><span>${t("v54.denied.role")}</span><strong>${t(roleLabelKey(role))}</strong></div><div><span>${t("v54.denied.module")}</span><strong>${t(moduleLabelKey(module))}</strong></div><div><span>${t("v54.denied.level")}</span><strong>${t("v54.access.none")}</strong></div></div><button class="btn btn-primary" id="deniedHome">${t("v54.denied.home")}</button></div></section>`}
+export function bindAccessDenied(){document.querySelector("#deniedHome")?.addEventListener("click",()=>navigate(landingRoute()))}
